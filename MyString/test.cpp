@@ -19,9 +19,13 @@ int main() {
 	MyString s0;
 	MyString s1("Hello,World");
 	MyString s2(s0);
-	MyString s3 = s1;
+	MyString s3 = s0;
 	MyString s8;
 	s8 = s2 = s1;//²âÊÔ¶àÖØ¸³Öµ£¨assignmentÔËËã·û£©
+
+	s8 = s1 + s3;//²âÊÔ+ÔËËã·û
+
+	s1 += s3;//²âÊÔ+=ÔËËã·û
 
 	func1(s1);
 	func2(s1);
@@ -35,7 +39,7 @@ int main() {
 	svec.push_back(func3());
 	svec.push_back(MyString("test finished."));
 
-	MyString *s5 = &s1;//²âÊÔ*ÔËËã·û
+	MyString *s5 = &s1;
 	MyString s6 = *s5;
 
 	std::cout << s6 << std::endl;//²âÊÔ<<ÔËËã·û
@@ -43,7 +47,7 @@ int main() {
 	char tes = s6[4];//²âÊÔ[]ÔËËã·û
 
 	std::cin >> s0;//²âÊÔ>>ÔËËã·û
-	std::cout << s0;
+	std::cout << s0.size();//²âÊÔsizeº¯Êı
 
 	return 0;
 }

@@ -33,15 +33,15 @@ public:
 		swap(rhs);
 		return *this;
 	}
-	
-	MyString& operator= (MyString&& rhs) {
-		swap(rhs);
-		return *this;
-	}
 
-	MyString& operator* (MyString* rhs)
-	{
-		return MyString(rhs->_data);
+	MyString& operator+= (MyString rhs) {
+		int size = this->size() + rhs.size() + 1;
+		char *tmp = new char[size];
+		strcpy(tmp, this->_data);
+		strcat(tmp, rhs._data);
+		delete[] this->_data;
+		this->_data = tmp;
+		return *this;
 	}
 
 	char& operator[] (size_t n) {
@@ -72,6 +72,18 @@ inline bool operator== (const MyString& lhs, const char* rhs) {
 
 inline bool operator== (const char* lhs, const MyString& rhs) {
 	return !strcmp(lhs, rhs.c_str());
+}
+
+inline MyString operator+ (MyString lhs, MyString const &rhs) {
+	int size = lhs.size() + rhs.size() + 1;
+	char * tmp = new char[size];
+	strcpy(tmp, lhs.c_str());
+	strcat(tmp, rhs.c_str());
+
+	MyString res(tmp);
+	delete[] tmp;
+
+	return res;
 }
 
 inline std::ostream& operator<<(std::ostream& OS,const MyString &S){
