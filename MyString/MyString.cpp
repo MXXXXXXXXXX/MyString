@@ -86,6 +86,19 @@ inline MyString operator+ (MyString lhs, MyString const &rhs) {
 	return res;
 }
 
+inline MyString operator+ (const char* lhs, MyString const &rhs) {
+	int size = strlen(lhs) + rhs.size() + 1;
+	char* tmp = new char[size];
+	strcpy(tmp, lhs);
+	strcat(tmp, rhs.c_str());
+
+	MyString res(tmp);
+	delete[] tmp;
+
+	return res;
+}
+
+
 inline std::ostream& operator<<(std::ostream& OS,const MyString &S){
 	OS << S.c_str();
 	return OS;

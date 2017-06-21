@@ -23,9 +23,10 @@ int main() {
 	MyString s8;
 	s8 = s2 = s1;//测试多重赋值（assignment运算符）
 
-	s8 = s1 + s3;//测试+运算符
+	s8 = "asd" + s1;//测试+运算符
+	s8 = s1 + s2;
 
-	s1 += s3;//测试+=运算符
+	s1 += s1;//测试+=运算符
 
 	func1(s1);
 	func2(s1);
