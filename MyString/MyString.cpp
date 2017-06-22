@@ -57,7 +57,8 @@ public:
 	}
 
 	void swap(MyString& rhs) {
-		std::swap(_data, rhs._data);
+		using std::swap;//令std::swap在此函数内可用(主要是用在class template中，此处并无多大意义)
+		swap(_data, rhs._data);//其实这样的写法在这样的环境下 并无任何意义 且降低了可读性，但是有开拓视野的意义。
 	}
 	friend std::istream& operator>>(std::istream& IS, MyString &S);
 };
@@ -114,4 +115,12 @@ inline std::istream& operator>>(std::istream& IS, MyString &S){
 	strcpy(S._data, input);
 	delete[] input;
 	return IS;
+}
+
+namespace std {//构造std::swap的特化版本
+	template<>
+	void swap<MyString>(MyString& lhs,MyString& rhs)
+	{
+		lhs.swap(rhs);//调用MyString内的swap成员函数
+	}
 }
